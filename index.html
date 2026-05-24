@@ -1,5 +1,5 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -23,29 +23,63 @@ body{
   padding:24px 16px 48px;
 }
 
-.page{max-width:520px;margin:0 auto}
+.page{max-width:680px;margin:0 auto}
 
-.brand{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:28px;padding:0 4px;
-}
-.brand-icon{
-  width:44px;height:44px;border-radius:11px;
-  background:var(--verde);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.brand-icon i{color:#fff;font-size:20px}
-.brand-name{
-  font-family:'DM Serif Display',serif;
-  font-size:20px;color:var(--text);letter-spacing:-0.3px;
-}
-.brand-sub{
-  font-size:11px;font-weight:500;
-  color:var(--verde-mid);letter-spacing:.12em;text-transform:uppercase;
-  margin-top:1px;
+/* --- BANNER ESTILO GOOGLE FORMS --- */
+.brand-forms-banner {
+  background-color: #045938; 
+  border-radius: 20px 20px 0 0; 
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
+.brand-icon-box {
+  background-color: #00a86b; 
+  width: 68px;
+  height: 68px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-icon-box span {
+  color: #ffffff;
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 0;
+  margin-bottom: 4px;
+}
+
+.brand-text-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-forms-banner .brand-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.brand-forms-banner .brand-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  opacity: 0.9;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* --- CORPO DO FORMULÁRIO --- */
 .card{
   background:var(--white);
   border-radius:20px;
@@ -54,17 +88,22 @@ body{
 }
 
 .card-header{
-  background:var(--verde);
+  background: var(--white);
   padding:28px 32px 24px;
+  border-bottom: 1px solid var(--border);
 }
 .card-header h1{
-  font-family:'DM Serif Display',serif;
-  font-size:24px;color:#fff;
-  letter-spacing:-0.4px;line-height:1.2;
-  margin-bottom:6px;
+  font-family:'DM Sans',sans-serif;
+  font-size:28px;
+  color: var(--text);
+  font-weight: 400;
+  letter-spacing:-0.4px;
+  line-height:1.2;
+  margin-bottom:12px;
 }
 .card-header p{
-  font-size:13px;color:rgba(255,255,255,.65);
+  font-size:14px;
+  color: var(--text);
   line-height:1.5;
 }
 
@@ -200,7 +239,8 @@ body{
 }
 .success-icon i{font-size:28px;color:var(--verde)}
 .success-wrap h2{
-  font-family:'DM Serif Display',serif;
+  font-family:'DM Sans',sans-serif;
+  font-weight: 700;
   font-size:22px;color:var(--text);margin-bottom:10px;
 }
 .success-wrap p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px}
@@ -225,18 +265,20 @@ body{
 </style>
 
 <div class="page">
-  <div class="brand">
-    <div class="brand-icon"><i class="ti ti-plus" aria-hidden="true"></i></div>
-    <div>
-      <div class="brand-name">Saúde Digital</div>
-      <div class="brand-sub">Automação em saúde</div>
-    </div>
-  </div>
-
   <div class="card">
+    <div class="brand-forms-banner">
+      <div class="brand-icon-box">
+        <span>+</span>
+      </div>
+      <div class="brand-text-box">
+        <div class="brand-name">Saude Digital</div>
+        <div class="brand-sub">AUTOMACAO EM SAUDE</div>
+      </div>
+    </div>
+
     <div class="card-header">
-      <h1>Agendamento de Consulta</h1>
-      <p>Sistema oficial de agendamento da Prefeitura Municipal.<br>Preencha os dados abaixo para confirmar sua consulta.</p>
+      <h1>Saúde Digital — Agendamento de Consulta</h1>
+      <p>Sistema oficial de agendamento de consultas da Prefeitura Municipal.</p>
     </div>
 
     <div class="prog-wrap">
