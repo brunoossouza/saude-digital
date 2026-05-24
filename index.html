@@ -1,309 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saúde Digital — Agendamento de Consulta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
 *{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --verde:#0B6B4A;
-  --verde-mid:#138A5F;
-  --verde-light:#1aaa76;
-  --verde-bg:#EAF5F0;
-  --verde-pale:#f2faf6;
-  --text:#111c17;
-  --muted:#5a7367;
-  --border:#cde3d8;
-  --white:#ffffff;
-  --radius:14px;
+  --verde:#0B6B4A;--verde-mid:#138A5F;--verde-light:#1aaa76;
+  --verde-bg:#EAF5F0;--verde-pale:#f2faf6;
+  --text:#111c17;--muted:#5a7367;--border:#cde3d8;--white:#ffffff;--radius:14px;
 }
-
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--verde-pale);
-  min-height:100vh;
-  padding:24px 16px 48px;
-}
-
-.page{max-width:680px;margin:0 auto}
-
-/* --- BANNER ESTILO GOOGLE FORMS --- */
-.brand-forms-banner {
-  background-color: #045938; 
-  border-radius: 20px 20px 0 0; 
-  padding: 24px 32px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.brand-icon-box {
-  background-color: #00a86b; 
-  width: 68px;
-  height: 68px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.brand-icon-box span {
-  color: #ffffff;
-  font-size: 44px;
-  font-weight: 300;
-  line-height: 0;
-  margin-bottom: 4px;
-}
-
-.brand-text-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-forms-banner .brand-name {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-  line-height: 1.1;
-}
-
-.brand-forms-banner .brand-sub {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  color: #ffffff;
-  opacity: 0.9;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-
-/* --- CORPO DO FORMULÁRIO --- */
-.card{
-  background:var(--white);
-  border-radius:20px;
-  border:1px solid var(--border);
-  overflow:hidden;
-}
-
-.card-header{
-  background: var(--white);
-  padding:28px 32px 24px;
-  border-bottom: 1px solid var(--border);
-}
-.card-header h1{
-  font-family:'DM Sans',sans-serif;
-  font-size:28px;
-  color: var(--text);
-  font-weight: 400;
-  letter-spacing:-0.4px;
-  line-height:1.2;
-  margin-bottom:12px;
-}
-.card-header p{
-  font-size:14px;
-  color: var(--text);
-  line-height:1.5;
-}
-
-.prog-wrap{
-  background:var(--verde-bg);
-  padding:16px 32px;
-  border-bottom:1px solid var(--border);
-}
-.prog-labels{
-  display:flex;gap:0;margin-bottom:10px;
-}
-.prog-step{
-  flex:1;display:flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:500;letter-spacing:.04em;
-  color:var(--muted);transition:color .3s;
-}
+body{font-family:'DM Sans',sans-serif;background:var(--verde-pale);min-height:100vh;padding:0 0 48px;}
+.page{max-width:640px;margin:0 auto}
+.header-banner{background:#045938;padding:28px 36px;display:flex;align-items:center;gap:20px;border-radius:20px 20px 0 0;}
+.header-logo{width:68px;height:68px;border-radius:14px;background:#1db86a;display:flex;align-items:flex-start;justify-content:center;flex-shrink:0;overflow:hidden;padding-top:6px;}
+.header-logo span{color:#fff;font-size:48px;font-weight:300;line-height:1;}
+.header-title{font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:#fff;letter-spacing:0.5px;line-height:1.1;}
+.header-sub{font-size:11px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:.15em;text-transform:uppercase;margin-top:4px;}
+.card{background:var(--white);border-radius:0 0 20px 20px;border:1px solid var(--border);border-top:none;overflow:hidden;margin-bottom:24px;}
+.form-title{padding:28px 36px 0;}
+.form-title h2{font-size:22px;font-weight:400;color:var(--text);margin-bottom:8px;}
+.form-title p{font-size:13px;color:var(--muted);line-height:1.5;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.prog-wrap{background:var(--verde-bg);padding:16px 36px;border-bottom:1px solid var(--border);}
+.prog-labels{display:flex;gap:0;margin-bottom:10px;}
+.prog-step{flex:1;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--muted);transition:color .3s;}
 .prog-step.done,.prog-step.cur{color:var(--verde)}
-.prog-dot{
-  width:18px;height:18px;border-radius:50%;flex-shrink:0;
-  border:2px solid var(--border);background:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:600;color:var(--muted);
-  transition:all .3s;
-}
+.prog-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;border:2px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:var(--muted);transition:all .3s;}
 .prog-step.done .prog-dot{background:var(--verde);border-color:var(--verde);color:#fff}
 .prog-step.cur .prog-dot{background:var(--verde-bg);border-color:var(--verde);color:var(--verde)}
-.prog-line{
-  height:2px;background:var(--border);border-radius:2px;
-  position:relative;margin-top:0;
-}
-.prog-fill{
-  height:100%;background:var(--verde);border-radius:2px;
-  transition:width .5s cubic-bezier(.4,0,.2,1);
-}
-
-.form-body{padding:28px 32px 32px}
-
-.step{display:none}
-.step.active{display:block}
-
-.sec-title{
-  font-size:11px;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--verde-mid);
-  margin-bottom:20px;
-  padding-bottom:10px;
-  border-bottom:1px solid var(--verde-bg);
-}
-
+.prog-line{height:2px;background:var(--border);border-radius:2px;}
+.prog-fill{height:100%;background:var(--verde);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+.form-body{padding:28px 36px 36px}
+.step{display:none}.step.active{display:block}
+.sec-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-mid);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--verde-bg);}
 .field{margin-bottom:18px}
-.field label{
-  display:block;font-size:13px;font-weight:500;
-  color:var(--text);margin-bottom:7px;
-  display:flex;align-items:center;gap:4px;
-}
+.field label{display:flex;font-size:13px;font-weight:500;color:var(--text);margin-bottom:7px;align-items:center;gap:4px;}
 .req{color:#e05c5c;font-size:12px}
-
-.field input,.field select,.field textarea{
-  width:100%;padding:12px 14px;
-  border:1.5px solid var(--border);
-  border-radius:var(--radius);
-  font-family:'DM Sans',sans-serif;
-  font-size:14px;color:var(--text);
-  background:#fff;outline:none;
-  transition:border-color .2s,box-shadow .2s;
-  appearance:none;-webkit-appearance:none;
-}
-.field input:focus,.field select:focus,.field textarea:focus{
-  border-color:var(--verde-mid);
-  box-shadow:0 0 0 4px rgba(19,138,95,.1);
-}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--verde-mid);box-shadow:0 0 0 4px rgba(19,138,95,.1);}
 .field input::placeholder,.field textarea::placeholder{color:#aac0b8}
 .field textarea{resize:none;height:88px;line-height:1.5}
-
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
 .select-wrap{position:relative}
-.select-wrap i{
-  position:absolute;right:14px;top:50%;transform:translateY(-50%);
-  color:var(--muted);font-size:16px;pointer-events:none;
-}
-
-.info-box{
-  background:var(--verde-bg);border-radius:var(--radius);
-  padding:14px 16px;margin-bottom:20px;
-  display:flex;gap:10px;align-items:flex-start;
-}
+.select-wrap i{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none;}
+.info-box{background:var(--verde-bg);border-radius:var(--radius);padding:14px 16px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;}
 .info-box i{color:var(--verde);font-size:18px;margin-top:1px;flex-shrink:0}
 .info-box p{font-size:13px;color:var(--verde);line-height:1.55}
-
-.resumo{
-  background:var(--verde-bg);border-radius:var(--radius);
-  padding:16px 18px;margin-bottom:22px;
-}
-.resumo-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:7px 0;font-size:13px;
-  border-bottom:1px solid rgba(11,107,74,.1);
-}
+.resumo{background:var(--verde-bg);border-radius:var(--radius);padding:16px 18px;margin-bottom:22px;}
+.resumo-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:13px;border-bottom:1px solid rgba(11,107,74,.1);}
 .resumo-row:last-child{border-bottom:none}
 .resumo-row span:first-child{color:var(--muted)}
 .resumo-row span:last-child{font-weight:500;color:var(--text)}
-
-.btn-row{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:12px;margin-top:24px;
-}
-.btn{
-  padding:12px 24px;border-radius:var(--radius);
-  font-family:'DM Sans',sans-serif;
-  font-size:14px;font-weight:500;
-  cursor:pointer;border:none;
-  display:flex;align-items:center;gap:7px;
-  transition:all .18s;
-}
-.btn-back{
-  background:var(--verde-bg);color:var(--verde);
-  border:1.5px solid var(--border);
-}
+.btn-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px;}
+.btn{padding:12px 24px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;border:none;display:flex;align-items:center;gap:7px;transition:all .18s;}
+.btn-back{background:var(--verde-bg);color:var(--verde);border:1.5px solid var(--border);}
 .btn-back:hover{background:var(--border)}
-.btn-next{
-  background:var(--verde);color:#fff;
-  margin-left:auto;
-}
+.btn-next{background:var(--verde);color:#fff;margin-left:auto;}
 .btn-next:hover{background:var(--verde-mid)}
 .btn-next:active{transform:scale(.97)}
-.btn-full{width:100%;justify-content:center}
-
 .success-wrap{text-align:center;padding:8px 0 16px}
-.success-icon{
-  width:64px;height:64px;border-radius:50%;
-  background:var(--verde-bg);margin:0 auto 20px;
-  display:flex;align-items:center;justify-content:center;
-}
+.success-icon{width:64px;height:64px;border-radius:50%;background:var(--verde-bg);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;}
 .success-icon i{font-size:28px;color:var(--verde)}
-.success-wrap h2{
-  font-family:'DM Sans',sans-serif;
-  font-weight: 700;
-  font-size:22px;color:var(--text);margin-bottom:10px;
-}
+.success-wrap h2{font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px;}
 .success-wrap p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px}
-.proto-badge{
-  display:inline-block;padding:10px 22px;
-  background:var(--verde-bg);border-radius:var(--radius);
-  font-size:14px;font-weight:600;color:var(--verde);
-  letter-spacing:.04em;margin-bottom:24px;
-}
-.whats-note{
-  display:flex;align-items:center;gap:8px;justify-content:center;
-  font-size:13px;color:var(--muted);
-}
+.proto-badge{display:inline-block;padding:10px 22px;background:var(--verde-bg);border-radius:var(--radius);font-size:14px;font-weight:600;color:var(--verde);letter-spacing:.04em;margin-bottom:24px;}
+.whats-note{display:flex;align-items:center;gap:8px;justify-content:center;font-size:13px;color:var(--muted);}
 .whats-dot{width:8px;height:8px;border-radius:50%;background:#25D366}
-
-.footer{
-  text-align:center;margin-top:20px;
-  font-size:12px;color:var(--muted);
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
+.footer{text-align:center;margin-top:8px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;padding-bottom:16px;}
 .footer i{font-size:14px;color:var(--verde)}
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(11,107,74,.08);z-index:100;align-items:center;justify-content:center;}
+.loading-overlay.show{display:flex}
+.loading-box{background:#fff;border-radius:16px;padding:28px 36px;text-align:center;box-shadow:0 8px 32px rgba(11,107,74,.15);}
+.loading-box p{font-size:14px;color:var(--verde);font-weight:500;margin-top:12px;}
+.spinner{width:36px;height:36px;border:3px solid var(--verde-bg);border-top-color:var(--verde);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
-
+</head>
+<body>
+<div class="loading-overlay" id="loading">
+  <div class="loading-box"><div class="spinner"></div><p>Registrando agendamento...</p></div>
+</div>
 <div class="page">
+  <div class="header-banner">
+    <div class="header-logo"><span>+</span></div>
+    <div>
+      <div class="header-title">Saúde Digital</div>
+      <div class="header-sub">AUTOMAÇÃO EM SAÚDE</div>
+    </div>
+  </div>
   <div class="card">
-    <div class="brand-forms-banner">
-      <div class="brand-icon-box">
-        <span>+</span>
-      </div>
-      <div class="brand-text-box">
-        <div class="brand-name">Saude Digital</div>
-        <div class="brand-sub">AUTOMACAO EM SAUDE</div>
-      </div>
+    <div class="form-title">
+      <h2>Saúde Digital — Agendamento de Consulta</h2>
+      <p>Sistema oficial de agendamento de consultas da Prefeitura Municipal</p>
     </div>
-
-    <div class="card-header">
-      <h1>Saúde Digital — Agendamento de Consulta</h1>
-      <p>Sistema oficial de agendamento de consultas da Prefeitura Municipal.</p>
-    </div>
-
     <div class="prog-wrap">
       <div class="prog-labels">
-        <div class="prog-step cur" id="ps1">
-          <div class="prog-dot" id="pd1">1</div>
-          Dados pessoais
-        </div>
-        <div class="prog-step" id="ps2">
-          <div class="prog-dot" id="pd2">2</div>
-          Consulta
-        </div>
-        <div class="prog-step" id="ps3">
-          <div class="prog-dot" id="pd3">3</div>
-          Confirmar
-        </div>
+        <div class="prog-step cur" id="ps1"><div class="prog-dot" id="pd1">1</div>Dados do paciente</div>
+        <div class="prog-step" id="ps2"><div class="prog-dot" id="pd2">2</div>Consulta</div>
+        <div class="prog-step" id="ps3"><div class="prog-dot" id="pd3">3</div>Confirmar</div>
       </div>
       <div class="prog-line"><div class="prog-fill" id="prog" style="width:0%"></div></div>
     </div>
-
     <div class="form-body">
-
       <div class="step active" id="s1">
-        <div class="sec-title">Seus dados pessoais</div>
-
+        <div class="sec-title">Dados do paciente</div>
         <div class="field">
           <label>Nome completo <span class="req">*</span></label>
           <input type="text" id="f-nome" placeholder="Ex: Maria da Silva">
@@ -319,20 +123,15 @@ body{
           </div>
         </div>
         <div class="field">
-          <label>WhatsApp / Telefone <span class="req">*</span></label>
+          <label>WhatsApp do paciente <span class="req">*</span></label>
           <input type="tel" id="f-tel" placeholder="(32) 99999-9999">
         </div>
-
         <div class="btn-row">
-          <button class="btn btn-next" onclick="goTo(2)">
-            Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i>
-          </button>
+          <button class="btn btn-next" onclick="goTo(2)">Próximo <i class="ti ti-arrow-right"></i></button>
         </div>
       </div>
-
       <div class="step" id="s2">
         <div class="sec-title">Dados da consulta</div>
-
         <div class="field-row">
           <div class="field">
             <label>Data da consulta <span class="req">*</span></label>
@@ -343,139 +142,161 @@ body{
             <input type="time" id="f-hora">
           </div>
         </div>
-
         <div class="field">
           <label>Especialidade <span class="req">*</span></label>
           <div class="select-wrap">
             <select id="f-esp">
               <option value="">Selecione a especialidade...</option>
-              <option>Clínico geral</option>
-              <option>Pediatria</option>
-              <option>Ginecologia e obstetrícia</option>
-              <option>Cardiologia</option>
-              <option>Ortopedia</option>
-              <option>Psicologia</option>
-              <option>Nutrição</option>
-              <option>Dermatologia</option>
+              <option>Clínico Geral</option><option>Pediatria</option>
+              <option>Ginecologia e Obstetrícia</option><option>Cardiologia</option>
+              <option>Ortopedia</option><option>Dermatologia</option>
+              <option>Psicologia</option><option>Psiquiatria</option>
+              <option>Neurologia</option><option>Oftalmologia</option>
+              <option>Otorrinolaringologia</option><option>Urologia</option>
+              <option>Endocrinologia</option><option>Nutrição</option>
+              <option>Fisioterapia</option><option>Odontologia</option>
               <option>Outra</option>
             </select>
-            <i class="ti ti-chevron-down" aria-hidden="true"></i>
+            <i class="ti ti-chevron-down"></i>
           </div>
         </div>
-
         <div class="field">
           <label>Unidade de saúde <span class="req">*</span></label>
           <div class="select-wrap">
             <select id="f-unid">
               <option value="">Selecione a unidade...</option>
-              <option>UBS Centro</option>
-              <option>UBS Bairro Norte</option>
-              <option>UBS Bairro Sul</option>
-              <option>Policlínica Municipal</option>
+              <option>UBS Centro</option><option>UBS Bairro Norte</option>
+              <option>UBS Bairro Sul</option><option>Policlínica Municipal</option>
               <option>Hospital Municipal</option>
             </select>
-            <i class="ti ti-chevron-down" aria-hidden="true"></i>
+            <i class="ti ti-chevron-down"></i>
           </div>
         </div>
-
+        <div class="field">
+          <label>Status <span class="req">*</span></label>
+          <div class="select-wrap">
+            <select id="f-status">
+              <option value="">Selecione o status...</option>
+              <option value="Agendado">Agendado</option>
+              <option value="Lista de Espera">Lista de Espera</option>
+            </select>
+            <i class="ti ti-chevron-down"></i>
+          </div>
+        </div>
         <div class="field">
           <label>Observações <span style="font-weight:400;color:var(--muted)">(opcional)</span></label>
-          <textarea id="f-obs" placeholder="Alergias, necessidades especiais ou outras informações importantes..."></textarea>
+          <textarea id="f-obs" placeholder="Alergias, necessidades especiais ou outras informações relevantes..."></textarea>
         </div>
-
         <div class="btn-row">
-          <button class="btn btn-back" onclick="goTo(1)">
-            <i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar
-          </button>
-          <button class="btn btn-next" onclick="goTo(3)">
-            Revisar <i class="ti ti-arrow-right" aria-hidden="true"></i>
-          </button>
+          <button class="btn btn-back" onclick="goTo(1)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-next" onclick="goTo(3)">Revisar <i class="ti ti-arrow-right"></i></button>
         </div>
       </div>
-
       <div class="step" id="s3">
-        <div class="sec-title">Confirme seus dados</div>
-
+        <div class="sec-title">Confirme os dados</div>
         <div class="resumo" id="resumo"></div>
-
         <div class="info-box">
-          <i class="ti ti-device-mobile-message" aria-hidden="true"></i>
-          <p>Você receberá uma mensagem de confirmação no <strong>WhatsApp</strong> e uma <strong>ligação automática</strong> de lembrete um dia antes da consulta.</p>
+          <i class="ti ti-device-mobile-message"></i>
+          <p>O paciente receberá uma mensagem de confirmação no <strong>WhatsApp</strong> e uma <strong>ligação automática</strong> de lembrete um dia antes da consulta.</p>
         </div>
-
         <div class="btn-row">
-          <button class="btn btn-back" onclick="goTo(2)">
-            <i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar
-          </button>
-          <button class="btn btn-next" onclick="submit()">
-            <i class="ti ti-check" aria-hidden="true"></i> Confirmar agendamento
-          </button>
+          <button class="btn btn-back" onclick="goTo(2)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-next" onclick="submit()"><i class="ti ti-check"></i> Confirmar agendamento</button>
         </div>
       </div>
-
       <div class="step" id="s4">
         <div class="success-wrap">
-          <div class="success-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <div class="success-icon"><i class="ti ti-circle-check"></i></div>
           <h2>Consulta agendada!</h2>
-          <p>Seu agendamento foi registrado com sucesso.<br>Guarde o número do protocolo abaixo.</p>
+          <p>O agendamento foi registrado com sucesso.<br>O paciente receberá confirmação pelo WhatsApp.</p>
           <div class="proto-badge" id="proto">SDM-000000</div>
-          <div class="whats-note">
-            <div class="whats-dot"></div>
-            Confirmação enviada para o seu WhatsApp
-          </div>
+          <div class="whats-note"><div class="whats-dot"></div>Confirmação enviada para o WhatsApp do paciente</div>
+          <br><br>
+          <button class="btn btn-next" style="margin:0 auto" onclick="novoAgendamento()">
+            <i class="ti ti-plus"></i> Novo agendamento
+          </button>
         </div>
       </div>
-
     </div>
   </div>
-
-  <div class="footer">
-    <i class="ti ti-shield-check" aria-hidden="true"></i>
-    Dados protegidos conforme a LGPD — Saúde Digital Municipal
-  </div>
+  <div class="footer"><i class="ti ti-shield-check"></i>Dados protegidos conforme a LGPD — Saúde Digital Municipal</div>
 </div>
-
 <script>
+const WEBHOOK_URL = 'https://brunoautomacao.app.n8n.cloud/webhook/504ef81a-10f6-44d9-b9ca-ad43898d3442';
 const steps=[1,2,3,4];
 const progs=[0,50,100,100];
-
 function goTo(n){
-  if(n===3) buildResumo();
-  steps.forEach(i=>{
-    document.getElementById('s'+i).classList.toggle('active',i===n);
-  });
+  if(n===2&&!validarEtapa1())return;
+  if(n===3&&!validarEtapa2())return;
+  if(n===3)buildResumo();
+  steps.forEach(i=>document.getElementById('s'+i).classList.toggle('active',i===n));
   document.getElementById('prog').style.width=progs[n-1]+'%';
   [1,2,3].forEach(i=>{
     const ps=document.getElementById('ps'+i);
     const pd=document.getElementById('pd'+i);
     ps.className='prog-step'+(i<n?' done':i===n?' cur':'');
-    if(i<n){pd.innerHTML='<i class="ti ti-check" style="font-size:10px"></i>'}
-    else{pd.textContent=i}
+    pd.innerHTML=i<n?'<i class="ti ti-check" style="font-size:10px"></i>':i;
   });
+  window.scrollTo(0,0);
 }
-
+function validarEtapa1(){
+  if(!document.getElementById('f-nome').value.trim()){alert('Preencha o nome completo do paciente.');return false;}
+  if(!document.getElementById('f-cpf').value.trim()){alert('Preencha o CPF do paciente.');return false;}
+  if(!document.getElementById('f-tel').value.trim()){alert('Preencha o WhatsApp do paciente.');return false;}
+  return true;
+}
+function validarEtapa2(){
+  if(!document.getElementById('f-data').value){alert('Selecione a data da consulta.');return false;}
+  if(!document.getElementById('f-hora').value){alert('Selecione o horário da consulta.');return false;}
+  if(!document.getElementById('f-esp').value){alert('Selecione a especialidade.');return false;}
+  if(!document.getElementById('f-unid').value){alert('Selecione a unidade de saúde.');return false;}
+  if(!document.getElementById('f-status').value){alert('Selecione o status do agendamento.');return false;}
+  return true;
+}
 function buildResumo(){
-  const nome=document.getElementById('f-nome').value||'—';
-  const cpf=document.getElementById('f-cpf').value||'—';
-  const tel=document.getElementById('f-tel').value||'—';
   const data=document.getElementById('f-data').value;
-  const hora=document.getElementById('f-hora').value||'—';
-  const esp=document.getElementById('f-esp').value||'—';
-  const unid=document.getElementById('f-unid').value||'—';
   const dataFmt=data?new Date(data+'T12:00:00').toLocaleDateString('pt-BR'):'-';
   document.getElementById('resumo').innerHTML=[
-    ['Paciente',nome],['CPF',cpf],['Telefone',tel],
-    ['Data',dataFmt],['Horário',hora],
-    ['Especialidade',esp],['Unidade',unid]
+    ['Paciente',document.getElementById('f-nome').value],
+    ['CPF',document.getElementById('f-cpf').value],
+    ['WhatsApp',document.getElementById('f-tel').value],
+    ['Data',dataFmt],['Horário',document.getElementById('f-hora').value],
+    ['Especialidade',document.getElementById('f-esp').value],
+    ['Unidade',document.getElementById('f-unid').value],
+    ['Status',document.getElementById('f-status').value]
   ].map(([k,v])=>`<div class="resumo-row"><span>${k}</span><span>${v}</span></div>`).join('');
 }
-
-function submit(){
-  const p='SDM-'+Math.floor(100000+Math.random()*900000);
-  document.getElementById('proto').textContent='Protocolo: '+p;
+async function submit(){
+  const protocolo='SDM-'+Math.floor(100000+Math.random()*900000);
+  const data=document.getElementById('f-data').value;
+  const payload={
+    protocolo,
+    nome:document.getElementById('f-nome').value.trim(),
+    cpf:document.getElementById('f-cpf').value.trim(),
+    nascimento:document.getElementById('f-nasc').value,
+    telefone:document.getElementById('f-tel').value.replace(/\D/g,''),
+    data_consulta:data,
+    data_formatada:data?new Date(data+'T12:00:00').toLocaleDateString('pt-BR'):data,
+    hora_consulta:document.getElementById('f-hora').value,
+    especialidade:document.getElementById('f-esp').value,
+    unidade:document.getElementById('f-unid').value,
+    status:document.getElementById('f-status').value,
+    observacoes:document.getElementById('f-obs').value.trim(),
+    timestamp:new Date().toISOString()
+  };
+  document.getElementById('loading').classList.add('show');
+  try{
+    await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  }catch(e){console.log('Webhook erro:',e);}
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('proto').textContent='Protocolo: '+protocolo;
   goTo(4);
 }
-
+function novoAgendamento(){
+  ['f-nome','f-cpf','f-nasc','f-tel','f-data','f-hora','f-obs'].forEach(id=>document.getElementById(id).value='');
+  ['f-esp','f-unid','f-status'].forEach(id=>document.getElementById(id).value='');
+  goTo(1);
+}
 document.getElementById('f-cpf').addEventListener('input',function(){
   let v=this.value.replace(/\D/g,'').slice(0,11);
   v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
@@ -487,3 +308,5 @@ document.getElementById('f-tel').addEventListener('input',function(){
   this.value=v;
 });
 </script>
+</body>
+</html>
