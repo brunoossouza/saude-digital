@@ -127,7 +127,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--verde-pale);min-height:10
           <input type="tel" id="f-tel" placeholder="(32) 99999-9999">
         </div>
         <div class="btn-row">
-          <button class="btn btn-next" onclick="goTo(2)">Próximo <i class="ti ti-arrow-right"></i></button>
+          <button class="btn btn-next" onclick="goTo(2)">Próximo →</button>
         </div>
       </div>
       <div class="step" id="s2">
@@ -188,41 +188,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--verde-pale);min-height:10
           <textarea id="f-obs" placeholder="Alergias, necessidades especiais ou outras informações relevantes..."></textarea>
         </div>
         <div class="btn-row">
-          <button class="btn btn-back" onclick="goTo(1)"><i class="ti ti-arrow-left"></i> Voltar</button>
-          <button class="btn btn-next" onclick="goTo(3)">Revisar <i class="ti ti-arrow-right"></i></button>
+          <button class="btn btn-back" onclick="goTo(1)">← Voltar</button>
+          <button class="btn btn-next" onclick="goTo(3)">Revisar →</button>
         </div>
       </div>
       <div class="step" id="s3">
         <div class="sec-title">Confirme os dados</div>
         <div class="resumo" id="resumo"></div>
         <div class="info-box">
-          <i class="ti ti-device-mobile-message"></i>
+          📱
           <p>O paciente receberá uma mensagem de confirmação no <strong>WhatsApp</strong> e uma <strong>ligação automática</strong> de lembrete um dia antes da consulta.</p>
         </div>
         <div class="btn-row">
-          <button class="btn btn-back" onclick="goTo(2)"><i class="ti ti-arrow-left"></i> Voltar</button>
-          <button class="btn btn-next" onclick="submit()"><i class="ti ti-check"></i> Confirmar agendamento</button>
+          <button class="btn btn-back" onclick="goTo(2)">← Voltar</button>
+          <button class="btn btn-next" onclick="submit()">✓ Confirmar agendamento</button>
         </div>
       </div>
       <div class="step" id="s4">
         <div class="success-wrap">
-          <div class="success-icon"><i class="ti ti-circle-check"></i></div>
+          <div class="success-icon">✓</div>
           <h2>Consulta agendada!</h2>
           <p>O agendamento foi registrado com sucesso.<br>O paciente receberá confirmação pelo WhatsApp.</p>
           <div class="proto-badge" id="proto">SDM-000000</div>
           <div class="whats-note"><div class="whats-dot"></div>Confirmação enviada para o WhatsApp do paciente</div>
           <br><br>
           <button class="btn btn-next" style="margin:0 auto" onclick="novoAgendamento()">
-            <i class="ti ti-plus"></i> Novo agendamento
+            + Novo agendamento
           </button>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer"><i class="ti ti-shield-check"></i>Dados protegidos conforme a LGPD — Saúde Digital Municipal</div>
+  <div class="footer">🔒Dados protegidos conforme a LGPD — Saúde Digital Municipal</div>
 </div>
 <script>
-const WEBHOOK_URL = 'https://brunoautomacao.app.n8n.cloud/webhook-test/504ef81a-10f6-44d9-b9ca-ad43898d3442';
+const WEBHOOK_URL = 'https://brunoautomacao.app.n8n.cloud/webhook/504ef81a-10f6-44d9-b9ca-ad43898d3442';
 const steps=[1,2,3,4];
 const progs=[0,50,100,100];
 function goTo(n){
@@ -286,7 +286,7 @@ async function submit(){
   };
   document.getElementById('loading').classList.add('show');
   try{
-    await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    await fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   }catch(e){console.log('Webhook erro:',e);}
   document.getElementById('loading').classList.remove('show');
   document.getElementById('proto').textContent='Protocolo: '+protocolo;
