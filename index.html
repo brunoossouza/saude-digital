@@ -221,10 +221,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--verde-pale);min-height:10
   </div>
   <div class="footer"><i class="ti ti-shield-check"></i>Dados protegidos conforme a LGPD — Saúde Digital Municipal</div>
 </div>
+
 <script>
-const WEBHOOK_URL = 'https://brunoautomacao.app.n8n.cloud/webhook/504ef81a-10f6-44d9-b9ca-ad43898d3442';
+// AJUSTADO PARA WEBHOOK-TEST PARA FAZER O MODO DE DESIGN/TESTE DO N8N FUNCIONAR
+const WEBHOOK_URL = 'https://brunoautomacao.app.n8n.cloud/webhook-test/504ef81a-10f6-44d9-b9ca-ad43898d3442';
 const steps=[1,2,3,4];
 const progs=[0,50,100,100];
+
 function goTo(n){
   if(n===2&&!validarEtapa1())return;
   if(n===3&&!validarEtapa2())return;
@@ -239,12 +242,14 @@ function goTo(n){
   });
   window.scrollTo(0,0);
 }
+
 function validarEtapa1(){
   if(!document.getElementById('f-nome').value.trim()){alert('Preencha o nome completo do paciente.');return false;}
   if(!document.getElementById('f-cpf').value.trim()){alert('Preencha o CPF do paciente.');return false;}
   if(!document.getElementById('f-tel').value.trim()){alert('Preencha o WhatsApp do paciente.');return false;}
   return true;
 }
+
 function validarEtapa2(){
   if(!document.getElementById('f-data').value){alert('Selecione a data da consulta.');return false;}
   if(!document.getElementById('f-hora').value){alert('Selecione o horário da consulta.');return false;}
@@ -253,6 +258,7 @@ function validarEtapa2(){
   if(!document.getElementById('f-status').value){alert('Selecione o status do agendamento.');return false;}
   return true;
 }
+
 function buildResumo(){
   const data=document.getElementById('f-data').value;
   const dataFmt=data?new Date(data+'T12:00:00').toLocaleDateString('pt-BR'):'-';
@@ -266,6 +272,7 @@ function buildResumo(){
     ['Status',document.getElementById('f-status').value]
   ].map(([k,v])=>`<div class="resumo-row"><span>${k}</span><span>${v}</span></div>`).join('');
 }
+
 async function submit(){
   const protocolo='SDM-'+Math.floor(100000+Math.random()*900000);
   const data=document.getElementById('f-data').value;
@@ -292,21 +299,17 @@ async function submit(){
   document.getElementById('proto').textContent='Protocolo: '+protocolo;
   goTo(4);
 }
+
 function novoAgendamento(){
   ['f-nome','f-cpf','f-nasc','f-tel','f-data','f-hora','f-obs'].forEach(id=>document.getElementById(id).value='');
   ['f-esp','f-unid','f-status'].forEach(id=>document.getElementById(id).value='');
   goTo(1);
 }
+
 document.getElementById('f-cpf').addEventListener('input',function(){
   let v=this.value.replace(/\D/g,'').slice(0,11);
   v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
   this.value=v;
 });
-document.getElementById('f-tel').addEventListener('input',function(){
-  let v=this.value.replace(/\D/g,'').slice(0,11);
-  v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
-  this.value=v;
-});
-</script>
-</body>
-</html>
+
+document.getElementById('f-
